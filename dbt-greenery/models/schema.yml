@@ -7,31 +7,12 @@ models:
       - name: user_id
         tests:
           - not_null
-      - name: first_name
-      - name: last_name
-      - name: email
-      - name: phone_number
-      - name: created_at
-      - name: updated_at
-      - name: address_id
   - name: stg_orders
     description: Information on all orders
     columns:
       - name: order_id
         tests:
           - not_null
-      - name: promo_id
-      - name: user_id
-      - name: address_id
-      - name: created_at
-      - name: order_cost
-      - name: shipping_cost
-      - name: order_total
-      - name: tracking_id
-      - name: shipping_service
-      - name: estimated_delivery_at
-      - name: delivered_at
-      - name: status
   - name: stg_products
     description: Information on all products
     columns:
@@ -57,3 +38,18 @@ models:
         tests:
           - percentage_values
       - name: status
+  - name: stg_addresses
+    description: Information on all addresses
+    columns:
+      - name: address_id
+        tests:
+          - not_null
+  - name: stg_order_items
+    description: Information on all order items
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+      - name: product_id
+        tests:
+          - not_null
