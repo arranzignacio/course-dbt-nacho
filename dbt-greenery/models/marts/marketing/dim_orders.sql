@@ -4,17 +4,6 @@
   )
 }}
 
-WITH order_sales AS (
-    -- This makes the assumption that prices haven't changed in an inflation free world :)
-    SELECT
-        oi.order_id,
-        SUM(oi.quantity * coalesce(p.price,0)) AS sale_amount
-    FROM {{ ref('stg_order_items') }} oi
-    LEFT JOIN {{ ref('stg_products') }} p
-    ON oi.product_id = p.product_id
-    GROUP BY oi.order_id
-)
-
 SELECT
   o.order_id,
   o.promo_id,
@@ -32,5 +21,5 @@ SELECT
 FROM {{ ref('stg_orders') }} o
 LEFT JOIN {{ ref('stg_promos') }} p
 ON o.promo_id = p.promo_id
-LEFT JOIN order_sales os
+LEFT JOIN {{ ref('int_order_sales') }} os
 ON o.order_id = os.order_id
