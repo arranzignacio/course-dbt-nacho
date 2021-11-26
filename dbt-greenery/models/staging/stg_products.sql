@@ -9,4 +9,4 @@ SELECT
     name,
     price,
     quantity
-FROM {{ source('tutorial', 'products') }}
+FROM {{ source('data', 'products') }}

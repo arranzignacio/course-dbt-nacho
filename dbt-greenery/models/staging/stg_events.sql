@@ -11,4 +11,4 @@ SELECT
     event_type,
     page_url,
     created_at
-FROM {{ source('tutorial', 'events') }}
+FROM {{ source('data', 'events') }}
