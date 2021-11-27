@@ -16,10 +16,12 @@ Some other data we could look into to answer the question could be by associatin
 
 ### Explain the marts models you added. Why did you organize the models in the way you did?
 I went backwards from the a few main questions I wanted to answer:
-* Is the business profitable? That led me to make fact_orders, associating the cost information to the price of the goods sold.
-    * To do this, it seemed reasonable to create an intermediate int_order_sales table, before populating the final fact table.
+* Is the business profitable? That led me to make fact_orders.
+    * I thought it would be helpful to create an int_order_sales table, bringing product level price information, but it did not seem to cleanly match order totals - so I had an intermediate table but I could have probably spared this one.
 * Is the purchasing funnel seamless? That led me to make fact_sessions, understanding what events users take in each session and how far down the purchasing funnel they go.
     * To do this, it seemed reasonable to create an intermediate int_sessions table.
+* Which are the best performing products? That led me to make fact_product_orders, aggregating the number of purchases each product had, and the number of distinct users buying them.
+    * To do this, it seemed reasonable to create an intermediate in_order_product table.
 
 ### Paste in an image of your DAG from the docs
 Uploaded to repo.
@@ -31,7 +33,7 @@ The main assumption I'm making is that prices don't change. I wouldn't be able t
 Other assumptions, for which I built test, were that the discounts would generally be values between 0 and 100, the prices and quantities of orders would never be zero.
 
 ### Did you find any “bad” data as you added and ran tests on your models? How did you go about either cleaning the data in the dbt model or adjusting your assumptions/tests?
-I did not find any bad data.
+I found that one value of order totals was negative. The other "bad" data is that order totals are not close to the addition of product prices purchased.
 
 ### Your stakeholders at Greenery want to understand the state of the data each day. Explain how you would ensure these tests are passing regularly and how you would alert stakeholders about bad data getting through.
-To ensure the tests pass regularly they would need to be run regularly. The best solution to alert the stakeholders would be by storing test failures and notify when those results have new failures.
+To ensure the tests pass regularly they would need to be run regularly. The best solution to alert the stakeholders would be by storing test failures and notify when those results have new failures. We'll report our amount of failures and will track to resolve those that do happen in under 1 week.
