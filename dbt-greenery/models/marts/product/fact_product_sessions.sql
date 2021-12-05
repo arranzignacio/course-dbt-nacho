@@ -14,10 +14,8 @@ SELECT
   a.state,
   a.country,
   ps.add_to_cart_events,
-  ps.checkout_events,
-  ps.package_shipped_events,
-  ps.account_created_events,
   ps.delete_from_cart_events,
+  ps.page_view_events,
   ps.session_start,
   ps.session_finish
 FROM {{ ref('int_product_sessions') }} ps
