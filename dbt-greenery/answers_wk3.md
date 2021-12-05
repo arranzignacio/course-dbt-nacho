@@ -49,9 +49,9 @@ Spider Plant        |  0.50000000000000000000
  ### Create a macro that would be used as a run-operation and explain the use case
 
  
- ### Add a post hook to your project to apply grants to the role “reporting
+ ### Add a post hook to your project to apply grants to the role “reporting“
 
 
  ### Install a package (i.e. dbt-utils, dbt-expectations) and apply one or more of the macros to your project
+Installed dbt utils.
 
- 
