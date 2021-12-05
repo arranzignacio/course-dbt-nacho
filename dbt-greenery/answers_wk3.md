@@ -53,5 +53,5 @@ Spider Plant        |  0.50000000000000000000
 
 
  ### Install a package (i.e. dbt-utils, dbt-expectations) and apply one or more of the macros to your project
-Installed dbt utils.
+Installed dbt utils, used star macro on dim users (not my proudest use of a macro).
 
