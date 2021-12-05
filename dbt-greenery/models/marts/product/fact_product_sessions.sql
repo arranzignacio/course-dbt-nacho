@@ -8,6 +8,7 @@ SELECT
   ps.session_id,
   ps.user_id,
   ps.product_id,
+  p.name AS product_name,
   a.address,
   a.zipcode,
   a.state,
@@ -24,3 +25,5 @@ LEFT JOIN {{ ref('stg_users') }} u
   ON ps.user_id = u.user_id
 LEFT JOIN {{ ref('stg_addresses') }} a
   ON u.address_id = a.address_id
+LEFT JOIN {{ ref('stg_products') }} p
+  ON ps.product_id = p.product_id
